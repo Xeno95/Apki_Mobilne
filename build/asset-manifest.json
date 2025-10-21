@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Apki_Mobilne/static/css/main.e6a30e49.css",
+    "main.js": "/Apki_Mobilne/static/js/main.cf8f561b.js",
+    "static/js/453.5c075af3.chunk.js": "/Apki_Mobilne/static/js/453.5c075af3.chunk.js",
+    "index.html": "/Apki_Mobilne/index.html",
+    "main.e6a30e49.css.map": "/Apki_Mobilne/static/css/main.e6a30e49.css.map",
+    "main.cf8f561b.js.map": "/Apki_Mobilne/static/js/main.cf8f561b.js.map",
+    "453.5c075af3.chunk.js.map": "/Apki_Mobilne/static/js/453.5c075af3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6a30e49.css",
+    "static/js/main.cf8f561b.js"
+  ]
+}
