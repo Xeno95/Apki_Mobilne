@@ -1,17 +1,28 @@
 <!doctype html>
 <html lang="pl">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Zabawa Grid – Geo</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Zabawa Grid – Geo + Gyro</title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 <div class="root">
     <header class="a">a</header>
 
     <section class="b">b</section>
-    <section class="c">c</section>
+
+    <!-- Żyroskop (Android) -->
+    <section class="c">
+        <strong>Żyroskop</strong><br/>
+        <div id="gyro-status">Oczekiwanie na dane…</div>
+        <div id="gyro-readouts">
+            α (yaw): <span id="alpha">—</span>°<br/>
+            β (pitch): <span id="beta">—</span>°<br/>
+            γ (roll): <span id="gamma">—</span>°
+        </div>
+    </section>
+
     <aside class="d">d</aside>
 
     <article class="e" id="geo">Pobieram lokalizację…</article>
