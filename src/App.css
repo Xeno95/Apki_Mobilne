@@ -1,38 +1,89 @@
-.App {
-  text-align: center;
+body
+{
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+    display: block;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.root
+{
+    border-radius: 1vw;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    "a a"
+    "b c"
+    "d d"
+    "e e"
+    "f f";
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.a
+{
+    background-color: coral;
+    grid-area: a;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.b
+{
+    background-color: gray;
+    grid-area: b;
 }
 
-.App-link {
-  color: #61dafb;
+.c
+{
+    background-color: purple;
+    grid-area: c;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.d
+{
+    background-color: cyan;
+    grid-area: d;
+}
+
+.e
+{
+    background-color: brown;
+    grid-area: e;
+}
+
+.f
+{
+    background-color: blanchedalmond;
+    grid-area: f;
+}
+
+.a, .b, .c, .d, .e, .f
+{
+    padding: 10px;
+}
+
+/* Tablet (>= 768px)*/
+@media (min-width: 768px)
+{
+    .root
+    {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+      "a a a"
+      "b c d"
+      "e e e"
+      "f f f";
+    }
+}
+
+/* PC >= 1024px*/
+@media (min-width: 1024px)
+{
+    .root
+    {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+      "a a a"
+      "b c d"
+      "e e f";
+    }
 }
