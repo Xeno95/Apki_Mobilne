@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Zabawa Grid – Geo + Gyro</title>
     <link rel="stylesheet" href="style.css"/>
+
+    <script>
+        document.getElementById('vibrate-btn').addEventListener('click', () =>
+        {
+            if(navigator.vibrate)
+            {
+                navigator.vibrate([100, 50, 100]);
+            }
+            else
+            {
+                alert('Ta przeglądarka nie obsługuje wibracji.');
+            }
+        });
+    </script>
 </head>
 <body>
 <div class="root">
@@ -23,7 +37,9 @@
         </div>
     </section>
 
-    <aside class="d">d</aside>
+    <aside class="d">
+        <button id="vibrate-btn">Wibruj telefon</button>
+    </aside>
 
     <article class="e" id="geo">Pobieram lokalizację…</article>
 
