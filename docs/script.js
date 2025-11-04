@@ -1,53 +1,101 @@
-document.addEventListener("DOMContentLoaded", () =>
-{
-    // ===== GEO =====
-    const out = document.getElementById("geo");
-    if(!("geolocation" in navigator))
-    {
-        out.textContent = "Błąd: przeglądarka nie obsługuje geolokalizacji.";
-    }
-    else
-    {
-        navigator.geolocation.getCurrentPosition(
-            (p) =>
-            {
-                const {latitude, longitude, accuracy} = p.coords;
-                out.textContent =
-                    `Szerokość: ${latitude.toFixed(6)}°, ` +
-                    `Dł.: ${longitude.toFixed(6)}° (±${Math.round(accuracy)} m)`;
-            },
-            (e) =>
-            {
-                out.textContent = `Błąd: ${e.message}`;
-            },
-            {enableHighAccuracy: true, timeout: 10000, maximumAge: 0}
-        );
-    }
+(async () => {
+    const video = document.getElementById("video");
+    const btnToggle = document.getElementById("toggleCam");
+    const chkFlip = document.getElementById("flip");
+    const errBox = document.getElementById("error");
 
-    // ===== GYRO (najprościej) =====
-    const statusEl = document.getElementById("gyro-status");
-    const alphaEl = document.getElementById("alpha");
-    const betaEl = document.getElementById("beta");
-    const gammaEl = document.getElementById("gamma");
+    // bieżący tryb: "user" (przednia) lub "environment" (tylna)
+    let facing = "user";
+    let currentStream = null;
 
-    if(typeof DeviceOrientationEvent === "undefined")
-    {
-        statusEl.textContent = "Brak wsparcia DeviceOrientation.";
+    // proste helpery
+    const showError = (msg) => {
+        errBox.hidden = false;
+        errBox.textContent = msg;
+    };
+    const hideError = () => { errBox.hidden = true; errBox.textContent = ""; };
+
+    // sprawdź kontekst bezpieczeństwa
+    if (!window.isSecureContext && location.hostname !== "localhost") {
+        showError("Ta strona nie działa bez HTTPS (wymóg przeglądarki dla kamery).");
+        btnToggle.disabled = true;
         return;
     }
 
-    // Android Chrome zwykle nie wymaga dodatkowych pozwoleń.
-    window.addEventListener("deviceorientation", (ev) =>
-    {
-        if(ev.alpha == null && ev.beta == null && ev.gamma == null)
-        {
-            statusEl.textContent = "Brak danych z czujników.";
-            return;
+    if (!navigator.mediaDevices?.getUserMedia) {
+        showError("Twoja przeglądarka nie obsługuje getUserMedia.");
+        btnToggle.disabled = true;
+        return;
+    }
+
+    // uruchomienie kamery
+    async function startCamera() {
+        try {
+            hideError();
+            // zatrzymaj poprzedni stream (jeśli był)
+            if (currentStream) {
+                currentStream.getTracks().forEach(t => t.stop());
+                currentStream = null;
+            }
+
+            const constraints = {
+                video: {
+                    facingMode: { ideal: facing },    // "user" | "environment"
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 }
+                },
+                audio: false
+            };
+
+            const stream = await navigator.mediaDevices.getUserMedia(constraints);
+            currentStream = stream;
+            video.srcObject = stream;
+            await video.play();
+        } catch (e) {
+            // fallback: jeśli wybrana kamera niedostępna, spróbuj bez facingMode
+            if (facing === "environment") {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+                    currentStream = stream;
+                    video.srcObject = stream;
+                    await video.play();
+                    showError("Nie udało się włączyć tylnej kamery — używam domyślnej.");
+                } catch (e2) {
+                    showError("Błąd kamery: " + (e2.message || e2));
+                }
+            } else {
+                showError("Błąd kamery: " + (e.message || e));
+            }
         }
-        statusEl.textContent = "Działa.";
-        // α: 0–360, β: -180–180, γ: -90–90
-        alphaEl.textContent = Number(ev.alpha).toFixed(1);
-        betaEl.textContent = Number(ev.beta).toFixed(1);
-        gammaEl.textContent = Number(ev.gamma).toFixed(1);
-    }, {passive: true});
-});
+    }
+
+    // przełączanie kamer
+    btnToggle.addEventListener("click", async () => {
+        facing = (facing === "user") ? "environment" : "user";
+        btnToggle.disabled = true;
+        await startCamera();
+        btnToggle.disabled = false;
+    });
+
+    // przełączanie odbicia lustrzanego
+    chkFlip.addEventListener("change", () => {
+        video.style.transform = chkFlip.checked ? "scaleX(-1)" : "none";
+    });
+
+    // auto-pauza przy ukryciu karty (oszczędza baterię)
+    document.addEventListener("visibilitychange", () => {
+        if (!currentStream) return;
+        const tracks = currentStream.getVideoTracks();
+        if (document.hidden) tracks.forEach(t => (t.enabled = false));
+        else tracks.forEach(t => (t.enabled = true));
+    });
+
+    // iOS: od iOS 16.4 web autoplay video wymaga playsinline + muted (ustawione w HTML)
+    // start
+    await startCamera();
+
+    // (opcjonalnie) reaguj na podpinanie/odpinanie urządzeń
+    navigator.mediaDevices?.addEventListener?.("devicechange", async () => {
+        // nic nie robimy automatycznie; możesz dodać odświeżanie listy kamer
+    });
+})();

@@ -1,50 +1,35 @@
 <!doctype html>
 <html lang="pl">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Zabawa Grid – Geo + Gyro</title>
-    <link rel="stylesheet" href="style.css"/>
-
-    <script>
-        document.getElementById('vibrate-btn').addEventListener('click', () =>
-        {
-            if(navigator.vibrate)
-            {
-                navigator.vibrate([100, 50, 100]);
-            }
-            else
-            {
-                alert('Ta przeglądarka nie obsługuje wibracji.');
-            }
-        });
-    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lusterko z kamery</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="root">
-    <header class="a">a</header>
+<main class="wrap">
+    <header>
+        <h1>Lusterko</h1>
+        <p class="hint">Wymaga HTTPS i zgody na kamerę. (GitHub Pages spełnia.)</p>
+    </header>
 
-    <section class="b">b</section>
-
-    <!-- Żyroskop (Android) -->
-    <section class="c">
-        <strong>Żyroskop</strong><br/>
-        <div id="gyro-status">Oczekiwanie na dane…</div>
-        <div id="gyro-readouts">
-            α (yaw): <span id="alpha">—</span>°<br/>
-            β (pitch): <span id="beta">—</span>°<br/>
-            γ (roll): <span id="gamma">—</span>°
-        </div>
+    <section class="mirror">
+        <video id="video" autoplay playsinline muted></video>
+        <div id="error" class="error" hidden></div>
     </section>
 
-    <aside class="d">
-        <button id="vibrate-btn">Wibruj telefon</button>
-    </aside>
+    <nav class="controls">
+        <button id="toggleCam" type="button">Przełącz kamerę</button>
+        <label class="switch">
+            <input id="flip" type="checkbox" checked />
+            <span>Odbicie (mirror)</span>
+        </label>
+    </nav>
 
-    <article class="e" id="geo">Pobieram lokalizację…</article>
-
-    <footer class="f">f</footer>
-</div>
+    <footer>
+        <small>getUserMedia • facingMode • CSS transform</small>
+    </footer>
+</main>
 
 <script src="script.js"></script>
 </body>

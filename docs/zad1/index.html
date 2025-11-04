@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zabawa Grid — Geo + Gyro + Vib</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="root">
+    <header class="a">
+        <strong>Demo: geolokalizacja • żyroskop • wibracja</strong>
+        <div id="secure-info" style="font-size:14px;opacity:.8"></div>
+    </header>
+
+    <section class="b">
+        <strong>Akcje</strong><br/>
+        <button id="enable-gyro" hidden>Włącz żyroskop</button>
+        <button id="vibrate">Wibracja 200 ms</button>
+        <button id="vibrate-pattern">Wibracja (wzór)</button>
+    </section>
+
+    <section class="c">
+        <strong>Żyroskop (orientacja)</strong>
+        <div id="gyro-status">Oczekiwanie…</div>
+        <div id="gyro-readouts" style="display:none">
+            α (yaw/kompas): <span id="alpha">—</span>°<br/>
+            β (pitch): <span id="beta">—</span>°<br/>
+            γ (roll): <span id="gamma">—</span>°
+        </div>
+    </section>
+
+    <aside class="d">
+        <strong>Wibracja</strong><br/>
+        <div id="vibrate-status">Gotowe.</div>
+        <small>Wymaga obsługi <code>navigator.vibrate</code> (Android).</small>
+    </aside>
+
+    <article class="e" id="geo">
+        Pobieram lokalizację…
+    </article>
+
+    <footer class="f">
+        Proste API przeglądarki: Geolocation • DeviceOrientation • Vibration
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
