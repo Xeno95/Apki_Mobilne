@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3adc30a0-fdd7-4eb4-a81f-5c1a0886a3b8" name="Changes" comment="." />
+    <list default="true" id="3adc30a0-fdd7-4eb4-a81f-5c1a0886a3b8" name="Changes" comment=".">
+      <change afterPath="$PROJECT_DIR$/docs/webNFC/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/webNFC/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/webNFC/style.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,11 +79,11 @@
       <recent name="C:\Users\adria\WebstormProjects\zabawa_grid\docs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\adria\WebstormProjects\zabawa_grid\docs\lusterko" />
-      <recent name="C:\Users\adria\WebstormProjects\zabawa_grid\docs\zad1" />
-      <recent name="C:\Users\adria\WebstormProjects\zabawa_grid" />
+      <recent name="C:\Users\adria\WebstormProjects\zabawa_grid\docs\webNFC" />
       <recent name="C:\Users\adria\WebstormProjects\zabawa_grid\docs" />
-      <recent name="C:\Users\adria\WebstormProjects\zabawa_grid\src\other" />
+      <recent name="C:\Users\adria\WebstormProjects\zabawa_grid\docs\lusterko" />
+      <recent name="C:\Users\adria\WebstormProjects\zabawa_grid\docs\1" />
+      <recent name="C:\Users\adria\WebstormProjects\zabawa_grid\docs\zad1" />
     </key>
   </component>
   <component name="RunManager">
@@ -112,7 +116,7 @@
       <workItem from="1760452455170" duration="62000" />
       <workItem from="1761042972669" duration="3838000" />
       <workItem from="1761046891334" duration="37000" />
-      <workItem from="1762256194002" duration="2522000" />
+      <workItem from="1762256194002" duration="3164000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -242,7 +246,23 @@
       <option name="project" value="LOCAL" />
       <updated>1762259108038</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary=".">
+      <option name="closed" value="true" />
+      <created>1762259274394</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1762259274394</updated>
+    </task>
+    <task id="LOCAL-00018" summary=".">
+      <option name="closed" value="true" />
+      <created>1762259398659</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1762259398659</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
