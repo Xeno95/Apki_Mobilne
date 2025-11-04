@@ -3,32 +3,27 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Czytnik Web NFC (NDEF)</title>
+    <title>Lusterko z kamery</title>
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 <main class="wrap">
-    <h1>Czytnik NFC (NDEF) — demo</h1>
-    <p class="hint">
-        Działa w Chrome/Android.
-    </p>
+    <header>
+        <h1>Lusterko</h1>
+    </header>
 
-    <div class="controls">
-        <button id="btn-scan" type="button">Skanuj NFC</button>
-        <button id="btn-stop" type="button" disabled>Zatrzymaj</button>
-        <span id="support" class="support"></span>
-    </div>
-
-    <section class="panel">
-        <h2>Odczyt</h2>
-        <div id="status">Gotowe. Kliknij „Skanuj NFC”.</div>
-        <div id="serial"></div>
-        <pre id="output" class="out"></pre>
+    <section class="mirror">
+        <video id="video" autoplay playsinline muted></video>
+        <div id="error" class="error" hidden></div>
     </section>
 
-    <footer>
-        Web NFC: <code>NDEFReader.scan()</code> • <code>reading</code>/<code>readingerror</code>
-    </footer>
+    <nav class="controls">
+        <button id="toggleCam" type="button">Przełącz kamerę</button>
+        <label class="switch">
+            <input id="flip" type="checkbox" checked/>
+            <span>Odbicie (mirror)</span>
+        </label>
+    </nav>
 </main>
 
 <script src="script.js"></script>
